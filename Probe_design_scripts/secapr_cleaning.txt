@@ -1,0 +1,17 @@
+# #All scripts from secapr pipeline as bash submission format
+
+# #Check quality of raw reads
+secapr quality_check --input Cleaning/Data/Raw/Resequenced_last/Unzipped --output Cleaning/Data/Processed/fastqc_results/Resequenced_2
+
+# #Clean raw reads using Trimmomatic and default options (adapter_info.txt file)
+secapr clean_reads --input Cleaning/Data/Raw/Resequenced_last/Unzipped/ --config Cleaning/adapter_info_reseq.txt --output Cleaning/Data/Processed/resequenced_2/clean_default --index double
+
+# #Check quality of cleaned reads
+secapr quality_check --input Cleaning/Data/Processed/resequenced_2/clean_default --output Cleaning/Data/Processed/fastqc_results/Resequenced_2/cleaned_default_settings
+
+# #Clean reads again using nondefault options - modify - includes --read_min 5000 for low read samples
+secapr clean_reads --read_min 5000 --input Cleaning/Data/Raw/Resequenced_last/Unzipped/ --config Cleaning/adapter_info_reseq.txt --output Cleaning/Data/Processed/resequenced_2/cleaned_trimmed_reads --index double --simpleClipThreshold 5 --palindromeClipThreshold 20 --seedMismatches 5 --headCrop 10
+
+# #Check quality of re-cleaned reads
+secapr quality_check --input Cleaning/Data/Processed/resequenced_2/cleaned_trimmed_reads --output Cleaning/Data/Processed/fastqc_results/Resequenced_2/cleaned_trimmed
+

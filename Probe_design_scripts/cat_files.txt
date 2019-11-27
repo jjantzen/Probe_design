@@ -1,0 +1,20 @@
+for folder in *; do
+  if [ -d "$folder" ]; then
+    for f in $folder/*.fa; do
+	    while read line; 
+         do
+			  if [[ ${line:0:1} == '>' ]]
+  				then
+				    outfile=${f%.fa}_all_${folder}.txt
+				    echo $line > $outfile
+			    else
+			      echo $line >> $outfile
+		    fi
+      done < $f
+      for a in $folder/*.fasta; do
+       while read line;
+         do echo $line >> $outfile; done < $a 
+      done; 
+     done;
+  fi;
+done
