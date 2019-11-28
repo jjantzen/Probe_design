@@ -15,4 +15,4 @@ To calculate lengths of introns and supercontigs, the calc_length.py script was 
 
 Other scripts for manipulating fasta and text files include cat_files.txt and separating_script.txt.
 
-The R scripts included in Stats_scripts were used to aggregate and present the statistics on enrichment and assembly success. 
+The R scripts included in Stats_R_scripts were used to aggregate and present the statistics on enrichment and assembly success. 
