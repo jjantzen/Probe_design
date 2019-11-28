@@ -82,7 +82,6 @@ probe_averages <- combo_lengths %>%
 
 write.csv(probe_averages, "Output_files/Tables/For_formatting/seq_length_avgs.csv", row.names = FALSE)
 
-#fix this part
 probe_averages_gathered <- as.data.frame(probe_averages) %>% 
   gather(Measurement, Lengths, average_length:max_length) %>% 
   unite(Variable, seq_source, Measurement, sep = ".") %>% 
@@ -127,11 +126,9 @@ grouping_by_source <- function(file){
 }
 
 
-str(probe_averages_gathered)
 
 combo_lengths2 <- get_columns(combo_lengths)
 
-str(combo_lengths$probe)
 
 probe_genome_avgs <- grouping_by_source(combo_lengths2)
 colnames(probe_genome_avgs)

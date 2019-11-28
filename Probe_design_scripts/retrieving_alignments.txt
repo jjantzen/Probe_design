@@ -1,5 +1,0 @@
-
-for folder in */; do for f in ${folder}*needle.fasta; do name=${f#$folder}; 
-cp $f /ufrc/soltis/jjantzen/Dissertation/Analysis/Sequencing/Methods_paper_PA/Percent_similarity_calc/Alignments/${name%.fasta}${folder%/}.fasta; done; done;
-	
-	

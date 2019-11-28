@@ -104,8 +104,6 @@ ggarrange(p1, p2, newpage = FALSE)
 
 dev.off()
 
-dev.off()
-
 pdf("output_figures/percent_ID_vs_probe_no_zero_length.pdf")
 ggplot(reshaped_percent_ID[which(reshaped_percent_ID$genome != "Miconia" & reshaped_percent_ID$probe_avg_no_zero_length <= 3000),], aes(x = probe_avg_no_zero_length, y = avg_ID_pct))+
   geom_point(aes(colour = clade))+

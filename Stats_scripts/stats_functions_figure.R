@@ -396,18 +396,12 @@ write.csv(seq_lengths_matrix_PA, "Output_files/paper_scripts_output/seq_lengths_
 all_percents_PA <- get_seq_percent(seq_lengths_matrix_PA)
 sorted_all_p_PA <- melt_sort_PA(all_percents_PA)
 
-#omit failed sample from sorted dataframe
-#sorted_all_p_PA_2 <- sorted_all_p_PA[which(sorted_all_p_PA$Var1 != "501_Msp_clean"),]
-
 #write and plot percents
 write.csv(sorted_all_p_PA, "Output_files/paper_scripts_output/PA_all_percents.csv")
 plot_heatmap(seq_lengths_matrix_PA, sorted_all_p_PA, "PA_all_percents")
 
 #Run for Memecylon lengths
 sorted_all_l_PA <- melt_sort_PA(seq_lengths_matrix_PA)
-
-#omit failed sample from sorted dataframe
-#sorted_all_l_PA_2 <- sorted_all_l_PA[which(sorted_all_l_PA$Var1 != "501_Msp_clean"),]
 
 #write and plot lengths
 write.csv(sorted_all_l_PA, "Output_files/paper_scripts_output/PA_all_lengths.csv")
@@ -452,10 +446,6 @@ combo_dataframes <- cbind(tJJ_sort[which(rownames(tJJ_sort) %in% rownames(tPA_so
 combo_matrices <- as.matrix(t(combo_dataframes))
 
 ##combine percent dataframes (sorted_sets_p_JJ and sorted_sets_p_PA)
-#sorted_all_p_PA_2 <- read.csv("Output_files/paper_scripts_output/PA_all_percents.csv", stringsAsFactors = FALSE)
-
-#sorted_all_p_PA_2 <- sorted_all_p_PA_2[,-1]
-
 combo_JJ_PA_p <- rbind(sorted_all_p_JJ_2[which(sorted_all_p_JJ_2$Var2 %in% sorted_all_p_PA$Var2),], sorted_all_p_PA[which(sorted_all_p_PA$Var2 %in% sorted_all_p_JJ_2$Var2),])
 
 plot_heatmap(combo_matrices, combo_JJ_PA_p, "combo_PA_JJ_percent")
@@ -717,11 +707,7 @@ plot_heatmap_grouped <- function(data, sorted_data, name){
   return(plot2)
 }
 
-unique(sorted_sp$species)
 
-
-plot1_saved
-plot2_saved
 
 #plot grouped and ordered heatmaps
 plot2_saved <- plot_heatmap_grouped(combo_matrices, combo_JJ_PA_l_3, "combo_PA_JJ_length_grouped")
@@ -929,39 +915,7 @@ my.ggp.yrange <- ggp$layout$panel_scales_y[[1]]$range$range  # data range!
 my.ggp.xrange <- ggp$layout$panel_scales_x[[1]]$range$range  # data range!
 
 
-# #Testing out code for fixing axes of plots
-# 
-# sorted_sp_test <- sorted_sp
-# 
-# str(sorted_sp_test)
-# 
-# sorted_sp_test$label <- ""
-# 
-# label_ones <- sorted_sp_test[!duplicated(sorted_sp_test$source),]
-# 
-# for (i in 1:nrow(sorted_sp_test)){
-#   if (sorted_sp_test$Var2[i] %in% label_ones$Var2) {
-#     sorted_sp_test$label[i] <- as.character(sorted_sp_test$source[i])
-#   }
-# }
-# 
-# unique(sorted_sp_test$label)
-# 
-# plot2 <- ggplot(data = sorted_sp_test, aes(x=factor(Var2), y=factor(Var1)))+
-#   geom_raster(aes(fill = as.factor(category)))+
-#   theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-#   ylab(NULL)+xlab(NULL)+
-#   theme(axis.text.y=element_text(face="italic",size = sample.size, color=yaxis_colours$colour),axis.text.x =element_text(size=gene.size, color = xaxis_colours_df$colour), legend.text = element_text(size = 3), legend.key.size = unit(0.5, "lines"), legend.position = "top",  legend.margin = margin(0.2, 0.2, 0.2, 0.2, "cm"))+
-#   scale_x_discrete(breaks= sorted_sp_test$Var2, labels = sorted_sp_test$label)+
-#   scale_fill_viridis(name="", discrete=TRUE, labels = c("No Seq", "Short (1-250)", "Medium (250-500)", "Long (500-1000)", "Extra Long (1000-6000)"))
-# print(plot2)
-# 
-# #scale_x_discrete(labels = sorted_sp$source)+size=gene.size, color = xaxis_colours_df$colour 
-# 
-# pdf("../Output_figures/plot2_test.pdf")
-# plot2
-# dev.off()
-# 
+
 
 #Get mean (reference) length
 ref <- seq_lengths_PA[1,]

@@ -1,4 +1,4 @@
-# #All scripts from secapr pipeline as bash submission format
+#secapr commands for cleaning and quality checking reads
 
 # #Check quality of raw reads
 secapr quality_check --input Cleaning/Data/Raw/Resequenced_last/Unzipped --output Cleaning/Data/Processed/fastqc_results/Resequenced_2
