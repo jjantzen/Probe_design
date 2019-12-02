@@ -1,5 +1,5 @@
 # Probe_design
-Probe design for target enrichment of Melastomataceae
+Probe design for target enrichment of Memecylon and Tibouchina (Melastomataceae)
 
 MarkerMiner was used to identify loci for target enrichment (https://bitbucket.org/srikarchamala/markerminer/src/master/).
 
